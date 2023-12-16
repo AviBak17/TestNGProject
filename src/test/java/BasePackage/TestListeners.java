@@ -7,28 +7,32 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import utility.CaptureScreenShot;
 import utility.LaunchBrowser;
 
 public class TestListeners implements ITestListener {
 	
 	public WebDriver driver = null;	
+	
 
+	
 	@Override
 	public void onTestStart(ITestResult result) {
-		System.out.println("Test Started");
+		System.out.println("Test Started");	
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		
-		CaptureScreenShot.TakeScreenShot(LaunchBrowser.driver);
+
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
-		CaptureScreenShot.TakeScreenShot(LaunchBrowser.driver);
 	}
 
 	@Override

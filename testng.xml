@@ -5,11 +5,12 @@
 		<listener class-name="BasePackage.TestListeners"></listener>
 	</listeners>
 	<parameter name="browser" value="Edge"></parameter>
+	<parameter name="author" value="Avinash K S"></parameter>
 	<parameter name="FilePath" value="./TestData/TestData.xls"></parameter>
 	<parameter name="SheetName" value="TestData"></parameter>
-  <test name="Test">
+  <test name="Create_Order">
     <classes>
-      <class name="TestCases.LoginTest"/>
+      <class name="TestCases.CreateOrder"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
