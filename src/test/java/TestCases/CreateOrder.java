@@ -70,6 +70,7 @@ public class CreateOrder extends BaseClass {
 		driver.findElement(By.xpath("//*[@id=\"finish\"]")).click();	
 		if(driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).getText().equals("Checkout: Complete!")) {	
 			driver.findElement(By.xpath("//*[@id=\"back-to-products\"]")).click();
+			
 		}
 			
 	}
