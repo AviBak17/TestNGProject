@@ -5,6 +5,11 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+
+import BasePackage.BaseClass;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
@@ -12,10 +17,13 @@ public class ReadExcelData {
     private String filePath;
     private String sheetName;
     private HSSFWorkbook workbook;
+    ITestContext context;
+    
     Map<String, String> singleRowData = new HashMap<String, String>();
-    public ReadExcelData(String filePath, String sheetName) {
+    public ReadExcelData(String filePath, String sheetName, ITestContext context) {
         this.filePath = filePath;
         this.sheetName = sheetName;
+        this.context=context;
     }
     private HSSFSheet getSheet() throws IOException {
         FileInputStream fis = new FileInputStream(filePath);
@@ -39,8 +47,8 @@ public class ReadExcelData {
                 Cell cell = row1.getCell(j);
                 singleRowData.put(columnHeader.get(j), getCellValueAsString(cell));
             }
-            
-            if(singleRowData.get("ExecutionFlag").equals("Y")||singleRowData.get("ExecutionFlag").equals("y")) {
+                         
+            if(singleRowData.get("KeyWord").equals(context.getCurrentXmlTest().getClasses().stream().findFirst().get().getName().substring(10))) {
             	
             	break;
             }

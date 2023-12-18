@@ -11,6 +11,7 @@
   <test name="Create_Order">
     <classes>
       <class name="TestCases.CreateOrder"/>
+      <class name="TestCases.EditOrder"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

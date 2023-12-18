@@ -21,9 +21,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.Parameters;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.model.Test.TestBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utility.CaptureScreenShot;
 import utility.LaunchBrowser;
@@ -38,7 +36,7 @@ public class BaseClass {
 	public static WebDriver NewWebdriver = null;
     public static ExtentReports extent = null;
     public static ExtentTest extentTest = null;
-		
+    
 	@Parameters("browser")
 	@BeforeTest()
 	public void launchBrowser(ITestContext context , String browser) {
@@ -67,7 +65,6 @@ public class BaseClass {
 		Capabilities capabilties = ((RemoteWebDriver) driver).getCapabilities();
 		String DeviceName = capabilties.getBrowserName() + "  " + capabilties.getBrowserVersion().substring(0,capabilties.getBrowserVersion().indexOf(".")) + "  " + capabilties.getPlatformName();	
 		String Author = context.getCurrentXmlTest().getParameter("author");
-		
 		extentTest.assignDevice(DeviceName);
 		extentTest.assignAuthor(Author);
 		
@@ -86,13 +83,13 @@ public class BaseClass {
 
 	@BeforeTest(dependsOnMethods= {"launchBrowser"})
 	@Parameters({"FilePath","SheetName"})
-	public void ReadExcelData(String FilePath, String SheetName) {
+	public void ReadExcelData(String FilePath, String SheetName,ITestContext context ) {
 
 		Map<String, String> ExcelData = null;
 
 		try {
 
-			ReadExcelData ex = new ReadExcelData(FilePath,SheetName);
+			ReadExcelData ex = new ReadExcelData(FilePath,SheetName,context);
 			ExcelData =ex.getExcelAsMap();
 
 		}
