@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.xml.XmlClass;
 
 import BasePackage.BaseClass;
 
@@ -18,6 +19,7 @@ public class ReadExcelData {
     private String sheetName;
     private HSSFWorkbook workbook;
     ITestContext context;
+    String strTestName;
     
     Map<String, String> singleRowData = new HashMap<String, String>();
     public ReadExcelData(String filePath, String sheetName, ITestContext context) {
@@ -47,8 +49,8 @@ public class ReadExcelData {
                 Cell cell = row1.getCell(j);
                 singleRowData.put(columnHeader.get(j), getCellValueAsString(cell));
             }
-                         
-            if(singleRowData.get("KeyWord").equals(context.getCurrentXmlTest().getClasses().stream().findFirst().get().getName().substring(10))) {
+                             
+            if(singleRowData.get("KeyWord").equals(BaseClass.strTestName)) {
             	
             	break;
             }

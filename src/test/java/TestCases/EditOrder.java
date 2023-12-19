@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -17,7 +18,7 @@ public class EditOrder extends BaseClass {
 	Map<String, String> TestData = null;	
 	WebDriver driver ;
 	
-	@BeforeTest(dependsOnMethods= {"launchBrowser","ReadExcelData"})
+	@BeforeClass(dependsOnMethods= {"launchBrowser","ReadExcelData"})
 	public void ConfigureAllDetails() {
 		
 		TestData = ReadTestData.ReadData();

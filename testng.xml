@@ -8,9 +8,9 @@
 	<parameter name="author" value="Avinash K S"></parameter>
 	<parameter name="FilePath" value="./TestData/TestData.xls"></parameter>
 	<parameter name="SheetName" value="TestData"></parameter>
-  <test name="Create_Order">
+  <test name="Create_Order" preserve-order="true" >
     <classes>
-      <class name="TestCases.CreateOrder"/>
+	  <class name="TestCases.CreateOrder"/> 
       <class name="TestCases.EditOrder"/>
     </classes>
   </test> <!-- Test -->

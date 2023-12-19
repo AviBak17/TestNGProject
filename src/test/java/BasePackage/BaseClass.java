@@ -13,14 +13,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.annotations.Parameters;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utility.CaptureScreenShot;
@@ -36,10 +41,11 @@ public class BaseClass {
 	public static WebDriver NewWebdriver = null;
     public static ExtentReports extent = null;
     public static ExtentTest extentTest = null;
+    public static String strTestName= null;
     
 	@Parameters("browser")
-	@BeforeTest()
-	public void launchBrowser(ITestContext context , String browser) {
+	@BeforeClass()
+	public void launchBrowser(ITestContext context , String browser , ITestResult result) {
 
 		if(browser.equals("Chrome")) {
 
@@ -61,7 +67,8 @@ public class BaseClass {
 		}
 
 		NewWebdriver = driver;
-		extentTest = extent.createTest(context.getName());
+		extentTest = extent.createTest(getClass().getName().substring(10));
+		strTestName = getClass().getName().substring(10);
 		Capabilities capabilties = ((RemoteWebDriver) driver).getCapabilities();
 		String DeviceName = capabilties.getBrowserName() + "  " + capabilties.getBrowserVersion().substring(0,capabilties.getBrowserVersion().indexOf(".")) + "  " + capabilties.getPlatformName();	
 		String Author = context.getCurrentXmlTest().getParameter("author");
@@ -72,7 +79,7 @@ public class BaseClass {
 	}
 
 
-	@AfterSuite()
+	@AfterClass()
 	public void quitbrowser() {
 
 		driver.close();
@@ -81,7 +88,7 @@ public class BaseClass {
 
 	}
 
-	@BeforeTest(dependsOnMethods= {"launchBrowser"})
+	@BeforeClass(dependsOnMethods= {"launchBrowser"})
 	@Parameters({"FilePath","SheetName"})
 	public void ReadExcelData(String FilePath, String SheetName,ITestContext context ) {
 
