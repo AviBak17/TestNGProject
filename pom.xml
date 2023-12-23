@@ -85,13 +85,6 @@
 			<version>1.18.28</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-api</artifactId>
-			<version>4.15.0</version>
-		</dependency>
-
-
 	</dependencies>
 
 	<properties>
